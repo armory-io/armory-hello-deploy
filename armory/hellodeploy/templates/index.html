@@ -1,0 +1,24 @@
+<!doctype html>
+<html>
+<title>Armory Hello Deploy!</title>
+
+<head>
+    <link rel="stylesheet" type="text/css" href="/static/styles.css" />
+</head>
+
+<body>
+    <div class="content">
+      <div class="center">
+        <div>
+          <img class="logo" src="http://blog.armory.io/content/images/2016/09/Armory_logo-1.png" />
+        </div>
+        <h1>Armory Spinnaker</h1>
+        <div class="details">
+         {% for key, value in userdata.items() %}
+            <div><strong>{{ key }}:</strong><span>{{ value }}</div>
+         {% endfor %}
+        </div>
+      </div>
+    </div>
+</body>
+</html>

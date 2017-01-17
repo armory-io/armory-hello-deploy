@@ -1,0 +1,19 @@
+
+body {
+  font-family: "Arial";
+  color: #465052;
+}
+
+.logo {
+  width:250px;
+}
+
+.content {
+  width:100%;
+}
+
+.center {
+  text-align: center;
+  width: 50%;
+  margin: 0 auto;
+}

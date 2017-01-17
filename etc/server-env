@@ -1,0 +1,6 @@
+CLOUD_ACCOUNT=development
+CLOUD_SERVER_GROUP=hellodeploy-sandbox-v001
+CLOUD_APP=armory-hello-deploy
+CLOUD_CLUSTER=hellodeploy-sandbox
+CLOUD_STACK=sandbox
+EC2_REGION=us-west-2
