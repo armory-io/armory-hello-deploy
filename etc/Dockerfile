@@ -11,6 +11,6 @@ ADD ./etc/server-env /etc/default/server-env
 
 WORKDIR /home/armory/
 
-RUN pip3 install -e .
+RUN pip3 install .
 
 CMD /usr/local/bin/start_server.py

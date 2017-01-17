@@ -10,5 +10,8 @@ setup(name='hello-deploy',
       packages=['armory.hellodeploy'],
       scripts=[
         'armory/scripts/start_server.py',
-     ]
+     ],
+     data_files=[
+        ('/etc/init/',['armory/scripts/armory-hello-server.conf'])
+    ]
 )
