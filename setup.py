@@ -17,6 +17,6 @@ setup(name='hello-deploy',
      ],
      data_files=[
         ('/etc/init/',['armory/scripts/armory-hello-server.conf']),
-        ('armory/hellodeploy/',['static/*', 'templates/*'])
+        ('armory',['hellodeploy/static/*', 'hellodeploy/templates/*'])
     ]
 )
