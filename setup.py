@@ -11,6 +11,7 @@ setup(name='hello-deploy',
     package_data = {
         '': ['*'],
     },
+    include_package_data=True,  # use MANIFEST.in during install
     scripts=[
         'armory/scripts/start_server.py',
      ],
