@@ -7,16 +7,7 @@ setup(name='hello-deploy',
     description='Armory Hello Deploy Site',
     author='Isaac Mosquera',
     author_email='isaac@armory.io',
-    packages=['armory.hellodeploy'],
-    scripts=[
-        'armory/scripts/start_server.py',
-     ],
-     install_requires=[
-          'nose==1.3.7',
-          'Flask==0.12'
-     ],
-     data_files=[
-        ('/etc/init/',['armory/scripts/armory-hello-server.conf']),
-        ('armory',['hellodeploy/static/*.css', 'hellodeploy/templates/*.html'])
+    data_files=[
+        ('/etc/init/',['etc/armory-hello-server.conf']),
     ]
 )

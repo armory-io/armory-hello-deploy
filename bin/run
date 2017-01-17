@@ -9,4 +9,4 @@ $DOCKER_RUN \
   -p 5000:5000 \
   -v ${BASE_DIR}/armory:/home/armory/armory \
   "${DOCKER_IMAGE}"
-  bash -c "pip install -e . && start_server.py"
+  bash -c "pip3 install -e . && start_server.py"
