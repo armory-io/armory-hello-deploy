@@ -1,0 +1,11 @@
+#!/bin/bash
+DOCKER_RUN="docker run -i -t --rm"
+GIT_HASH=$(git rev-parse HEAD | cut -c -7)
+GIT_REPO=$(git config --local remote.origin.url | awk -F['/.'] '{ print $(NF-1) }')
+DOCKER_IMAGE=${DOCKER_REGISTRY}/${GIT_REPO}:${GIT_HASH}
+
+docker push "${DOCKER_IMAGE}"
+
+# #curl -T armory-hello-deploy_1.0-1_all.deb \
+#   -uisaac:7b2591079a1ed8689a173c6e3b023785ddac16a8 \
+#    "https://api.bintray.com/content/armory/debians/armo/armory-hello-deploy_1.0-1.all.deb;deb_distribution=trusty;deb_component=main;publish=1;deb_architecture=i386,amd64"

@@ -7,6 +7,5 @@ DOCKER_IMAGE=${DOCKER_REGISTRY}/${GIT_REPO}:${GIT_HASH}
 echo "running: ${DOCKER_IMAGE}"
 $DOCKER_RUN \
   -p 5000:5000 \
-  -v ${BASE_DIR}/armory:/home/armory/armory \
-  "${DOCKER_IMAGE}"
-  bash -c "pip3 install -e . && start_server.py"
+  -v ${BASE_DIR}/src/:/home/armory/armory \
+  "${DOCKER_IMAGE}" 
