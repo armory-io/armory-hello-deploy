@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 from flask import Flask
 from armory.hellodeploy.webapp import server
 import signal
