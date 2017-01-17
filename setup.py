@@ -3,12 +3,15 @@
 from distutils.core import setup
 
 setup(name='hello-deploy',
-      version='1.0',
-      description='Armory Hello Deploy Site',
-      author='Isaac Mosquera',
-      author_email='isaac@armory.io',
-      packages=['armory.hellodeploy'],
-      scripts=[
+    version='1.0',
+    description='Armory Hello Deploy Site',
+    author='Isaac Mosquera',
+    author_email='isaac@armory.io',
+    packages=['armory.hellodeploy'],
+    package_data = {
+        '': ['*.css', '*.html'],
+    },
+    scripts=[
         'armory/scripts/start_server.py',
      ],
      install_requires=[
