@@ -1,13 +1,13 @@
 #!/usr/bin/env python
 
-from distutils.core import setup
+from distutils.core import setup, find_packages
 
 setup(name='hello-deploy',
     version='1.0',
     description='Armory Hello Deploy Site',
     author='Isaac Mosquera',
     author_email='isaac@armory.io',
-    packages=setuptools.find_packages(),
+    packages=find_packages(),
     include_package_data=True,  # use MANIFEST.in during install
     scripts=[
         'armory/scripts/start_server.py',
