@@ -8,10 +8,6 @@ setup(name='hello-deploy',
     author='Isaac Mosquera',
     author_email='isaac@armory.io',
     packages=['armory.hellodeploy'],
-    include_package_data=True,  # use MANIFEST.in during install
-    package_data = {
-        '': ['*.css', '*.html']
-    },
     scripts=[
         'armory/scripts/start_server.py',
      ],
@@ -20,6 +16,7 @@ setup(name='hello-deploy',
           'Flask==0.12'
      ],
      data_files=[
-        ('/etc/init/',['armory/scripts/armory-hello-server.conf'])
+        ('/etc/init/',['armory/scripts/armory-hello-server.conf']),
+        ('armory/hellodeploy/',['*.html', '*.css'])
     ]
 )
