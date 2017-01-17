@@ -9,6 +9,9 @@ setup(name='hello-deploy',
     author_email='isaac@armory.io',
     packages=['armory.hellodeploy'],
     include_package_data=True,  # use MANIFEST.in during install
+    package_data = {
+        '': ['*.css', '*.html']
+    },
     scripts=[
         'armory/scripts/start_server.py',
      ],
