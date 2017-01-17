@@ -9,8 +9,8 @@ setup(name='hello-deploy',
     author_email='isaac@armory.io',
     packages=['armory.hellodeploy'],
     package_data = {
-        'static': ['*'],
-        'templates': ['*']
+        'armory/static': ['*'],
+        'armory/templates': ['*']
     },
     scripts=[
         'armory/scripts/start_server.py',
