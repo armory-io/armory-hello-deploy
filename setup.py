@@ -7,7 +7,7 @@ setup(name='hello-deploy',
     description='Armory Hello Deploy Site',
     author='Isaac Mosquera',
     author_email='isaac@armory.io',
-    packages=['armory.hellodeploy']
+    packages=['armory.hellodeploy'],
     include_package_data=True,  # use MANIFEST.in during install
     scripts=[
         'armory/scripts/start_server.py',
