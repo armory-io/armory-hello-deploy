@@ -19,12 +19,12 @@ EOF
 
 docker build -t "${DOCKER_IMAGE}" -f etc/Dockerfile .
 
-# echo "building debian package"
-# $DOCKER_RUN \
-#   -e "BUILD_NUMBER=${CI_BUILD_NUMBER}" \
-#   -v ${BASE_DIR}/:/home/armory/ \
-#   "${DOCKER_IMAGE}" \
-#   bash -c "python3 setup.py \
-#     --command-packages=stdeb.command sdist_dsc \
-#     --package3=armory-hello-deploy \
-#     --dist-dir=./build bdist_deb"
+echo "building debian package"
+$DOCKER_RUN \
+  -e "BUILD_NUMBER=${CI_BUILD_NUMBER}" \
+  -v ${BASE_DIR}/:/home/armory/ \
+  "${DOCKER_IMAGE}" \
+  bash -c "python3 setup.py \
+    --command-packages=stdeb.command sdist_dsc \
+    --package3=armory-hello-deploy \
+    --dist-dir=./build bdist_deb"
