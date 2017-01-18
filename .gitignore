@@ -7,6 +7,8 @@ MANIFEST
 # C extensions
 *.so
 
+#build file that must be in etc for deb
+etc/*.properties
 # Distribution / packaging
 .Python
 env/
