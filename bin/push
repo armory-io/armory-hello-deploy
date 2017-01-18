@@ -8,7 +8,6 @@ VERSION=0.${BUILD_NUMBER}-1
 DEB_FILE=${APP_NAME}_${VERSION}_all.deb
 METADATA="deb_distribution=trusty;deb_component=main;publish=1;deb_architecture=i386,amd64"
 
-set -x
 curl -T ./build/${DEB_FILE} \
   -u${BINTRAY_USER}:${BINTRAY_APIKEY} \
    "${BINTRAY_URL}/${APP_NAME}/${VERSION}/${DEB_FILE};${METADATA}"
