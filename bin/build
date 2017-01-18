@@ -1,4 +1,5 @@
 #!/bin/bash
+env
 source ./bin/common.env
 echo "building: ${DOCKER_IMAGE}"
 
