@@ -7,14 +7,16 @@ RUN apt-get update && apt-get install -y \
     python-all \
     debhelper
 
-ADD ./src/ /home/armory/armory
+ADD ./armory/ /home/armory/armory
+ADD ./setup.py  /home/armory/setup.py
 ADD ./etc/server-env /etc/default/server-env
 
 WORKDIR /home/armory/
 
 RUN pip3 install \
   nose==1.3.7 \
-  Flask==0.12 \
   stdeb==0.8.5
+
+RUN pip3 install -e .
 
 CMD armory/start_server.py
