@@ -25,6 +25,6 @@ $DOCKER_RUN \
   "${DOCKER_IMAGE}" \
   bash -c "python3 setup.py \
     --command-packages=stdeb.command sdist_dsc \
-    --depends=docker-engine \
+    --depends3=docker-engine \
     --package3=armory-hello-deploy \
     --dist-dir=./build bdist_deb"
