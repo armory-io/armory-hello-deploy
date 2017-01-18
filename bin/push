@@ -1,6 +1,8 @@
 #!/bin/bash
 source ./bin/common.env
-#docker push "${DOCKER_IMAGE}"
+
+echo "Pushing Image to Dockerhub"
+docker push "${DOCKER_IMAGE}"
 
 APP_NAME=armory-hello-deploy
 BINTRAY_URL=https://api.bintray.com/content/armory/debians/
