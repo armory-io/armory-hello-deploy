@@ -8,7 +8,8 @@ MANIFEST
 *.so
 
 #build file that must be in etc for deb
-etc/*.properties
+etc/default
+
 # Distribution / packaging
 .Python
 env/

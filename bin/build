@@ -5,11 +5,15 @@ CI_BUILD_NUMBER=${BUILD_NUMBER:=0}
 
 echo "cleaning up build and dist dirs"
 rm -Rf MANIFEST ./build/ ./deb_dist ./dist/ *.tar.gz
-mkdir -p ./build/
 
-cat << EOF > ${BASE_DIR}/etc/armory-hello-server.properties
+echo "making dirs for build"
+mkdir -p ./build/
+mkdir -p ./etc/default/
+
+cat << EOF > ${BASE_DIR}/etc/default/armory-hello-server
 BUILD_VERSION=${CI_BUILD_NUMBER}
 GIT_VERSION=${GIT_HASH}
+SERVER_ENV=/etc/default/server-env
 EOF
 
 docker build -t "${DOCKER_IMAGE}" -f etc/Dockerfile .
