@@ -1,7 +1,14 @@
 #!/bin/bash
 source ./bin/common.env
-docker push "${DOCKER_IMAGE}"
+#docker push "${DOCKER_IMAGE}"
 
-# #curl -T armory-hello-deploy_1.0-1_all.deb \
-#   -u${BINTRAY_USER}:${BINTRAY_APIKEY} \
-#    "https://api.bintray.com/content/armory/debians/armo/armory-hello-deploy_1.0-1.all.deb;deb_distribution=trusty;deb_component=main;publish=1;deb_architecture=i386,amd64"
+APP_NAME=armory-hello-deploy
+BINTRAY_URL=https://api.bintray.com/content/armory/debians/
+VERSION=0.${BUILD_NUMBER}-1
+DEB_FILE=${APP_NAME}_${VERSION}_all.deb
+METADATA="deb_distribution=trusty;deb_component=main;publish=1;deb_architecture=i386,amd64"
+
+set -x
+curl -T ./build/${DEB_FILE} \
+  -u${BINTRAY_USER}:${BINTRAY_APIKEY} \
+   "${BINTRAY_URL}/${APP_NAME}/${VERSION}/${DEB_FILE};${METADATA}"

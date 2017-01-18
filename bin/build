@@ -1,5 +1,4 @@
 #!/bin/bash
-env
 source ./bin/common.env
 echo "building: ${DOCKER_IMAGE}"
 
@@ -8,7 +7,9 @@ docker build -t "${DOCKER_IMAGE}" -f etc/Dockerfile .
 rm -Rf MANIFEST ./build/ ./deb_dist ./dist/ *.tar.gz
 echo "building debian package"
 
+set -x
 $DOCKER_RUN \
+  -e "BUILD_NUMBER=${BUILD_NUMBER}" \
   -v ${BASE_DIR}/:/home/armory/ \
   "${DOCKER_IMAGE}" \
   bash -c "python3 setup.py \
