@@ -7,7 +7,7 @@ node {
 
     stage("Build Image") {
         sh '''
-          source /mnt/secrets/bintray
+          . /mnt/secrets/bintray/bintray
           arm push
         '''
     }
