@@ -4,6 +4,7 @@ from armory.hellodeploy.webapp import server
 import signal
 
 def term_handler(signal, frame):
+    print("caught sigterm")
     term_func = request.environ.get('werkzeug.server.shutdown')
     if func is None:
         raise RuntimeError('Not running with the Werkzeug Server')

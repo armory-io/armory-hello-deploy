@@ -19,4 +19,4 @@ RUN pip3 install \
 
 RUN pip3 install -e .
 
-CMD armory/start_server.py
+CMD hello_deploy_start.py

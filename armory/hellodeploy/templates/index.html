@@ -13,9 +13,12 @@
           <img class="logo" src="http://blog.armory.io/content/images/2016/09/Armory_logo-1.png" />
         </div>
         <h1>Armory Spinnaker</h1>
-        <div class="details">
+        <div class="details center">
          {% for key, value in userdata.items() %}
-            <div><strong>{{ key }}:</strong><span>{{ value }}</div>
+         <div class="details" style="margin:5px">
+              <span style="display: block;text-align:left"><strong>{{ key }}: </strong><span>
+              <span style="text-align:right">{{ value }}</span>
+          </div>
          {% endfor %}
         </div>
       </div>

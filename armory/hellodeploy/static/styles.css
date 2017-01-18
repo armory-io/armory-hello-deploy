@@ -12,6 +12,10 @@ body {
   width:100%;
 }
 
+.details {
+  width:500px;
+}
+
 .center {
   text-align: center;
   width: 50%;
