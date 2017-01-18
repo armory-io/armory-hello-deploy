@@ -10,6 +10,9 @@ setup(name='hello-deploy',
     author_email='isaac@armory.io',
     data_files=[
         ('/etc/init/',['etc/armory-hello-server.conf']),
-        ('/etc/default/',['etc/default/armory-hello-server'])
+        ('/etc/default/',[
+            'etc/default/armory-hello-server',
+            'etc/server-env'
+        ])
     ]
 )
