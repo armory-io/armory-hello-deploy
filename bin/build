@@ -1,9 +1,5 @@
 #!/bin/bash
-DOCKER_RUN="docker run -i -t --rm"
-GIT_HASH=$(git rev-parse HEAD | cut -c -7)
-GIT_REPO=$(git config --local remote.origin.url | awk -F['/.'] '{ print $(NF-1) }')
-DOCKER_IMAGE=${DOCKER_REGISTRY}/${GIT_REPO}:${GIT_HASH}
-
+source ./bin/common.env
 echo "building: ${DOCKER_IMAGE}"
 
 docker build -t "${DOCKER_IMAGE}" -f etc/Dockerfile .
