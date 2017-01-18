@@ -17,7 +17,7 @@ setup(name='hello-deploy',
         'armory.hellodeploy.static',
         'armory.hellodeploy.templates'
     ],
-    scripts=['armory/scripts/start_server.py'],
+    scripts=['armory/scripts/armory_hello_start.py'],
     package_data={'': ['*.*']},
     include_package_data=True,
     data_files=[
