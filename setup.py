@@ -17,13 +17,13 @@ setup(name='hello-deploy',
         'armory.hellodeploy.static',
         'armory.hellodeploy.templates'
     ],
-    scripts=['armory/scripts/armory_hello_start.py'],
+    scripts=['armory/scripts/hello_deploy_start.py'],
     package_data={'': ['*.*']},
     include_package_data=True,
     data_files=[
-        ('/etc/init/',['etc/armory-hello-server.conf']),
+        ('/etc/init/',['etc/armory-hello-deploy.conf']),
         ('/etc/default/',[
-            'etc/default/armory-hello-server',
+            'etc/default/armory-hello-deploy',
             'etc/server-env'
         ])
     ]

@@ -11,7 +11,7 @@ echo "making dirs for build"
 mkdir -p ./build/
 mkdir -p ./etc/default/
 
-cat << EOF > ${BASE_DIR}/etc/default/armory-hello-server
+cat << EOF > ${BASE_DIR}/etc/default/armory-hello-deploy
 BUILD_VERSION=${CI_BUILD_NUMBER}
 GIT_VERSION=${GIT_HASH}
 SERVER_ENV=/etc/default/server-env
