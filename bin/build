@@ -22,6 +22,7 @@ docker build -t "${DOCKER_IMAGE}" -f etc/Dockerfile .
 echo "building debian package"
 $DOCKER_RUN \
   -e "BUILD_NUMBER=${CI_BUILD_NUMBER}" \
+  -e "GIT_HASH=${GIT_HASH}" \
   -v ${BASE_DIR}/:/home/armory/ \
   "${DOCKER_IMAGE}" \
   bash -c "python3 setup.py \

@@ -2,9 +2,10 @@
 import os
 from distutils.core import setup
 
-build_number = os.environ.get("BUILD_NUMBER", "0")
+build_number=os.environ.get("BUILD_NUMBER", "0")
+git_hash=os.environ.get("GIT_HASH", "0")
 setup(name='hello-deploy',
-    version='0.%s-h150.ecvh44' % build_number,
+    version='0.%s-h%s.%s' % (build_number, build_number, git_hash),
     description='Armory Hello Deploy Site',
     author='Isaac Mosquera',
     author_email='isaac@armory.io',

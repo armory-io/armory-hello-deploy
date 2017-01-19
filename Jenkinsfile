@@ -2,7 +2,6 @@ node {
     checkout scm
 
     stage("Build Image") {
-        sh("env")
         sh("arm build")
     }
 
