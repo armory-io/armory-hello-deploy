@@ -16,4 +16,8 @@ node {
         '''
     }
 
+    stage("Archive Artifacts") {
+           archiveArtifacts artifacts: 'build/*.deb', fingerprint: true
+    }
+
 }
