@@ -1,7 +1,6 @@
 #!/bin/bash
 source ./bin/common.env
 echo "building: ${DOCKER_IMAGE}"
-CI_BUILD_NUMBER=${BUILD_NUMBER:=0}
 
 echo "cleaning up build and dist dirs"
 find . -name "*.pyc" -exec rm -rf {} \;
@@ -22,10 +21,10 @@ docker build -t "${DOCKER_IMAGE}" -f etc/Dockerfile .
 echo "building debian package"
 $DOCKER_RUN \
   -e "BUILD_NUMBER=${CI_BUILD_NUMBER}" \
-  -e "GIT_HASH=${GIT_HASH}" \
   -v ${BASE_DIR}/:/home/armory/ \
   "${DOCKER_IMAGE}" \
   bash -c "python3 setup.py \
     --command-packages=stdeb.command sdist_dsc \
     --package3=armory-hello-deploy \
+    --debian-version=h${CI_BUILD_NUMBER}.${GIT_HASH} \
     --dist-dir=./build bdist_deb"
