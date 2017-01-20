@@ -1,8 +1,9 @@
 #!/usr/bin/env python
 import os
-from setuptools import setup
+from setuptools import setup, find_packages
 
 build_number=os.environ.get("BUILD_NUMBER", "0")
+print(find_packages())
 setup(name='hello-deploy',
     version='0.%s.0' % build_number,
     description='Armory Hello Deploy Site',
@@ -11,14 +12,14 @@ setup(name='hello-deploy',
     install_requires=[
         'Flask==0.12',
     ],
-    packages=[
-        'armory',
-        'armory.hellodeploy',
-        'armory.hellodeploy.static',
-        'armory.hellodeploy.templates'
-    ],
+    packages= find_packages(),
+    # [
+    #     'armory',
+    #     'armory.hellodeploy',
+    #     'armory.hellodeploy.static',
+    #     'armory.hellodeploy.templates'
+    # ],
     scripts=['armory/scripts/hello_deploy_start.py'],
-    package_data={'': ['*.*']},
     include_package_data=True,
     data_files=[
         ('/etc/init/',['/home/armory/etc/armory-hello-deploy.conf']),
