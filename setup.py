@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 import os
-from distutils.core import setup
+from setuptools import setup
 
 build_number=os.environ.get("BUILD_NUMBER", "0")
 setup(name='hello-deploy',
@@ -21,10 +21,10 @@ setup(name='hello-deploy',
     package_data={'': ['*.*']},
     include_package_data=True,
     data_files=[
-        ('/etc/init/',['etc/armory-hello-deploy.conf']),
+        ('/etc/init/',['/home/armory/etc/armory-hello-deploy.conf']),
         ('/etc/default/',[
-            'etc/default/armory-hello-deploy',
-            'etc/server-env'
+            '/home/armory/etc/default/armory-hello-deploy',
+            '/home/armory/etc/server-env'
         ])
     ]
 )
