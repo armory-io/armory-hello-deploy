@@ -2,3 +2,6 @@
 
 This is for demo purposes, let's show some automation!
 
+
+## Developing
+`arm run`
