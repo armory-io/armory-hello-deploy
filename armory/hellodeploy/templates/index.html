@@ -33,12 +33,17 @@
         <div><button type="button" class="btn btn-primary" id="datadog_event">Send an "event"</button></div>
       <br>
         <div><button type="button" class="btn btn-primary" id="datadog_counter">Send a counter inc</button></div>
+      <br>
+        <div><button type="button" class="btn btn-primary" id="increase_diskspace">Make a 500MB file</button></div>
       <script>
           $('#datadog_event').click(function () {
               $.get('/datadog/event');
           });
           $('#datadog_counter').click(function () {
               $.get('/datadog/counter');
+          });
+          $('#datadog_counter').click(function () {
+              $.get('/increase_disk');
           });
       </script>
       </div>

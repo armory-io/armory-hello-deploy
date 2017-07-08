@@ -2,7 +2,8 @@ from flask import Flask, render_template, jsonify
 import json
 from armory.hellodeploy import kv_parser
 import datadog
-
+from subprocess import call
+import time
 
 server = Flask(__name__, static_url_path='/static')
 
@@ -34,3 +35,10 @@ def datadog_counter():
     datadog.dogstatsd.statsd.increment("hellodeploy.buttons.datadog.warning")
 
     return jsonify({"sent": "counter increment"})
+
+
+
+@server.route("/increase_disk")
+def add_disk():
+    call(["dd","if=/dev/zero","of=/tmp/filler-file-" + str(int(time.time() * 1000)),"bs=1M","count=512"])
+    return jsonify({"sent": "ok"})
