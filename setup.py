@@ -11,6 +11,7 @@ setup(name='hello-deploy',
     author_email='isaac@armory.io',
     install_requires=[
         'Flask==0.12',
+        "datadog==0.16.0"
     ],
     packages= find_packages(),
     # [
