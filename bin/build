@@ -27,6 +27,6 @@ $DOCKER_RUN \
   "${DOCKER_IMAGE}" \
   bash -c "python3 setup.py \
     --command-packages=stdeb.command sdist_dsc \
-    --package3=armory-hello-deploy \
+    --package3=${APP_NAME} \
     --debian-version=h${CI_BUILD_NUMBER}.${GIT_HASH} \
     --dist-dir=./build bdist_deb"
