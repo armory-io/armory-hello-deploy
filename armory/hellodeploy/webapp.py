@@ -19,7 +19,8 @@ datadog.initialize(**datadog_options)
 def home():
     kv_text = open('/etc/default/server-env').read()
     env_kv = kv_parser.parse(kv_text)
-    return render_template('index.html', userdata=env_kv)
+    build_data = kv_parser.parse(open('/etc/default/armory-hello-deploy').read())
+    return render_template('index.html', build_data=build_data, userdata=env_kv)
 
 
 @server.route("/datadog/event")
