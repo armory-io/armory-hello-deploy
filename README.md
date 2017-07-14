@@ -41,3 +41,16 @@ fpm -t deb \
 - Spinnaker will deploy the specified version from jenkins.
 - It's best to have the baking phase to only just do installs. Then on the next time the
 image gets booted up, it'll start.
+
+
+### Tips
+- Inspect files included into a deb
+```bash
+brew intall dpkg
+dpkg -c build/*.deb
+```
+
+-Inspect the control file
+```bash
+dpkg -f build/*.deb
+```
