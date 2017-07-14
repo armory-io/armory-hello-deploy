@@ -1,0 +1,27 @@
+#! /bin/bash
+
+echo "Package postinst install"
+
+
+# fpm only allows a init script to be put in init.d
+# our script must actually live in init/
+# we're going to move it for now
+mv /etc/init.d/armory-hello-deploy.conf /etc/init/armory-hello-deploy.conf
+
+
+# You can't run apt-get within preinst/postinst and prerm/postrm scripts
+# so we're going to have the init startup script do things we need to do.
+
+
+# install datadog on startup
+cat << EOF > /var/tmp/install_datadog.sh
+# install and upgrade pip
+apt-get install -y python3-pip
+easy_install3 -U pip
+
+# install datadog
+pip3 install datadog
+DD_API_KEY=71120e33fa59c2bf8af09b6d881344b4 bash -c "\$(curl -L https://raw.githubusercontent.com/DataDog/dd-agent/master/packaging/datadog-agent/source/install_agent.sh)"
+EOF
+
+chmod +x /var/tmp/install_datadog.sh
