@@ -19,7 +19,7 @@ setup(name='hello-deploy',
     #     'armory.hellodeploy.static',
     #     'armory.hellodeploy.templates'
     # ],
-    scripts=['armory/scripts/hello_deploy_start.py'],
+    scripts=['armory/scripts/hello_deploy_start.py', 'armory/scripts/inject_canary_errors.py'],
     include_package_data=True,
     data_files=[
         ('/etc/init/',['/home/armory/etc/armory-hello-deploy.conf']),
