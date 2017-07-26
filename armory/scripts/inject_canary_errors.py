@@ -29,9 +29,12 @@ def main():
     # so the monitor doesn't have that info when it alerts,
     # and Barometer can't tell which canary to fail.
 
+    asg = env_kv["CLOUD_SERVER_GROUP"][1:-1]
+    tags = ["#autoscaling_group:%s" % asg]
+
     while True:
         for _ in range(5):
-            datadog.dogstatsd.statsd.event('CanaryTest', 'canarytest: autoscaling_group:%s' % env_kv["CLOUD_SERVER_GROUP"])
+            datadog.dogstatsd.statsd.event('CanaryTest', 'canarytest: autoscaling_group:%s' % env_kv["CLOUD_SERVER_GROUP"], tags=tags)
 
         print("Delivered 5 CanaryTest events to datadog.")
         time.sleep(120)
