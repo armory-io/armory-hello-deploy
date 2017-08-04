@@ -21,13 +21,8 @@ RUN pip3 install \
 
 ADD ./armory/ /home/armory/armory
 ADD ./setup.py  /home/armory/setup.py
-<<<<<<< HEAD
-ADD ./etc/default/armory-hello-deploy.conf  /home/armory/etc/armory-hello-deploy.conf
-ADD ./etc/default/server-env /etc/default/server-env
-=======
 ADD ./etc/armory-hello-deploy.conf  /home/armory/etc/armory-hello-deploy.conf
-ADD ./etc/server-env /etc/default/server-env
->>>>>>> eec50f8ba0e0f9998da4406430c3f1a1a3660aca
+ADD ./etc/default/server-env /etc/default/server-env
 
 WORKDIR /home/armory/
 
