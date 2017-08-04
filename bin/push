@@ -14,6 +14,6 @@ fi
 
 BINTRAY_URL=https://api.bintray.com/content/armory/${REPO}
 
-curl -T ./build/${DEB_FILE} \
+curl -T ./build/distributions/${DEB_FILE} \
   -u${BINTRAY_USER}:${BINTRAY_APIKEY} \
    "${BINTRAY_URL}/${APP_NAME}/${VERSION}/${DEB_FILE};${METADATA}"
