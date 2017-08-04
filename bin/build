@@ -27,4 +27,4 @@ docker run --rm \
   -e "BRANCH_NAME=$(echo ${GIT_HASH} | tr -d -- -)" \
   -v $(pwd):/app \
   frekele/gradle:2.12-jdk8 \
-  gradle -b /app/etc/build.gradle buildDeb
+  gradle -b /app/build.gradle buildDeb
