@@ -23,6 +23,7 @@ docker build -t "${DOCKER_IMAGE}" -f etc/Dockerfile .
 echo "building debian package"
 $DOCKER_RUN \
   -e "BUILD_NUMBER=${CI_BUILD_NUMBER}" \
+<<<<<<< Updated upstream
   -v $(pwd)/:/home/armory/ \
   "${DOCKER_IMAGE}" \
   bash -c "python3 setup.py \
@@ -30,3 +31,9 @@ $DOCKER_RUN \
     --package3=${APP_NAME} \
     --debian-version=h${CI_BUILD_NUMBER}.${GIT_HASH} \
     --dist-dir=./build bdist_deb"
+=======
+  -e "BRANCH_NAME=$(echo ${GIT_HASH} | tr -d -- -)" \
+  -v $(pwd):/app \
+  frekele/gradle:2.12-jdk8 \
+  gradle -b /app/build.gradle buildDeb
+>>>>>>> Stashed changes
