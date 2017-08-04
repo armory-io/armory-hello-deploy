@@ -1,0 +1,11 @@
+#! /bin/bash
+
+echo "Package postinst install"
+# You can't run apt-get within preinst/postinst and prerm/postrm scripts
+# so we're going to have the init startup script do things we need to do.
+
+# install datadog on startup
+# install and upgrade pip
+easy_install3 -U pip
+
+cd /tmp/armory && python3 setup.py install sdist

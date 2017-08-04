@@ -6,7 +6,7 @@ MANIFEST
 *.tar.gz
 # C extensions
 *.so
-
+.gradle
 #build file that must be in etc for deb
 etc/default
 

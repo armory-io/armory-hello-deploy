@@ -17,7 +17,7 @@ node {
     }
 
     stage("Archive Artifacts") {
-           archiveArtifacts artifacts: 'build/*.deb', fingerprint: true
+           archiveArtifacts artifacts: 'build/distributions/*.deb', fingerprint: true
     }
 
 }
