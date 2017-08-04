@@ -28,7 +28,6 @@ docker run --rm \
         --name ${APP_NAME} \
         --version ${VERSION} \
         --no-auto-depends \
-        --depends python3-flask \
         --depends 'python3:any (>= 3.3.2-2~)' \
         --depends 'python3' \
         -s python --python-pip /usr/bin/pip3 --python-bin /usr/bin/python3 \
