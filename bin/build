@@ -21,16 +21,11 @@ EOF
 echo "building debian package"
 
 docker build -t "${DOCKER_IMAGE}" -f etc/Dockerfile . &&
+
+
 docker run --rm \
-    -v $(pwd):/home/armory \
-    "$DOCKER_IMAGE" \
-    bash -c "fpm -t deb \
-        --name ${APP_NAME} \
-        --version ${VERSION} \
-        --no-auto-depends \
-        --depends 'python3:any (>= 3.3.2-2~)' \
-        --depends 'python3' \
-        -s python --python-pip /usr/bin/pip3 --python-bin /usr/bin/python3 \
-        --package build/${APP_NAME}_${VERSION}_all.deb \
-        --after-install etc/postinst \
-        ./setup.py"
+  -e "VERSION_NUMBER=${VERSION_NUMBER}" \
+  -e "RELEASE_NAME=$(echo ${RELEASE_NAME} | tr -d -- -)" \
+  -v $(pwd):/app \
+  frekele/gradle:2.12-jdk8 \
+  gradle -b /app/etc/build.gradle buildDeb

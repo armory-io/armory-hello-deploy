@@ -18,11 +18,5 @@ setup(name='hello-deploy',
             'armory/scripts/inject_canary_errors.py'
     ],
     include_package_data=True,
-    data_files=[
-        ('/etc/init/',['/home/armory/etc/armory-hello-deploy.conf']),
-        ('/etc/default/',[
-            '/home/armory/etc/default/armory-hello-deploy',
-            '/home/armory/etc/server-env'
-        ])
-    ]
+    zip_safe = False
 )
