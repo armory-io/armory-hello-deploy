@@ -23,8 +23,8 @@ echo "building debian package"
 docker build -t "${DOCKER_IMAGE}" -f etc/Dockerfile . &&
 
 docker run --rm \
-  -e "VERSION_NUMBER=${BUILD_VERSION}" \
-  -e "RELEASE_NAME=$(echo ${GIT_VERSION} | tr -d -- -)" \
+  -e "VERSION_NUMBER=${CI_BUILD_NUMBER}" \
+  -e "RELEASE_NAME=$(echo ${GIT_HASH} | tr -d -- -)" \
   -v $(pwd):/app \
   frekele/gradle:2.12-jdk8 \
   gradle -b /app/etc/build.gradle buildDeb
