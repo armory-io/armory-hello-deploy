@@ -33,7 +33,4 @@ docker run --rm \
         -s python --python-pip /usr/bin/pip3 --python-bin /usr/bin/python3 \
         --package build/${APP_NAME}_${VERSION}_all.deb \
         --after-install etc/postinst \
-        --deb-init etc/armory-hello-deploy.conf \
-        --deb-default etc/default/armory-hello-deploy \
-        --deb-default /etc/default/server-env \
         ./setup.py"
