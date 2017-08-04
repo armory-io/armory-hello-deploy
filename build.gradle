@@ -27,6 +27,14 @@ ospackage {
   requires('python3-pip')
 
   from('armory') {
+    into '/tmp/armory/armory'
+  }
+
+  from('setup.py') {
+    into '/tmp/armory'
+  }
+
+  from('MANIFEST.in') {
     into '/tmp/armory'
   }
 

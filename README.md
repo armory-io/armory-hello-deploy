@@ -8,26 +8,7 @@ This is for demo purposes, let's show some automation!
 
 
 ## Building a package
-Ideally, we want to use something like `fpm`. However, there is no support for adding your own files through the
-python builder currently.
-
-Example of a python package:
-```bash
-fpm -t deb \
-    --name ${APP_NAME} \
-    --version ${VERSION} \
-    --no-auto-depends \
-    --depends python3-flask \
-    --depends 'python3:any (>= 3.3.2-2~)' \
-    --depends 'python3' \
-    -s python --python-pip /usr/bin/pip3 --python-bin /usr/bin/python3 \
-    --package build/${APP_NAME}_${VERSION}_all.deb \
-    --after-install etc/postinst \
-    --deb-init etc/armory-hello-deploy.conf \
-    --deb-default etc/default/armory-hello-deploy \
-    --deb-default /etc/default/server-env \
-    ./setup.py"
-```
+We're using `gradlew` to build the package
 
 
 ### General overview:
@@ -47,10 +28,10 @@ image gets booted up, it'll start.
 - Inspect files included into a deb
 ```bash
 brew intall dpkg
-dpkg -c build/*.deb
+dpkg -c build/distributions/*.deb
 ```
 
 -Inspect the control file
 ```bash
-dpkg -f build/*.deb
+dpkg -f build/distributions/*.deb
 ```
