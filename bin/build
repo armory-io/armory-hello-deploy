@@ -18,15 +18,23 @@ GIT_VERSION=${GIT_HASH}
 SERVER_ENV=/etc/default/server-env
 EOF
 
-docker build -t "${DOCKER_IMAGE}" -f etc/Dockerfile .
-
 echo "building debian package"
-$DOCKER_RUN \
-  -e "BUILD_NUMBER=${CI_BUILD_NUMBER}" \
-  -v $(pwd)/:/home/armory/ \
-  "${DOCKER_IMAGE}" \
-  bash -c "python3 setup.py \
-    --command-packages=stdeb.command sdist_dsc \
-    --package3=${APP_NAME} \
-    --debian-version=h${CI_BUILD_NUMBER}.${GIT_HASH} \
-    --dist-dir=./build bdist_deb"
+
+docker build -t "${DOCKER_IMAGE}" -f etc/Dockerfile . &&
+docker run --rm \
+    -v $(pwd):/home/armory \
+    "$DOCKER_IMAGE" \
+    bash -c "fpm -t deb \
+        --name ${APP_NAME} \
+        --version ${VERSION} \
+        --no-auto-depends \
+        --depends python3-flask \
+        --depends 'python3:any (>= 3.3.2-2~)' \
+        --depends 'python3' \
+        -s python --python-pip /usr/bin/pip3 --python-bin /usr/bin/python3 \
+        --package build/${APP_NAME}_${VERSION}_all.deb \
+        --after-install etc/postinst \
+        --deb-init etc/armory-hello-deploy.conf \
+        --deb-default etc/default/armory-hello-deploy \
+        --deb-default /etc/default/server-env \
+        ./setup.py"
