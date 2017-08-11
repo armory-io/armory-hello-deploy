@@ -42,6 +42,8 @@
       <br>
         <div><button type="button" class="btn btn-primary" id="datadog_counter">Send a counter inc</button></div>
       <br>
+        <div><button type="button" class="btn btn-primary" id="datadog_shutdown_canary">Stop canary</button></div>
+      <br>
         <div><button type="button" class="btn btn-primary" id="increase_diskspace">Make a 500MB file</button></div>
       <script>
           $('#datadog_event').click(function () {
@@ -49,6 +51,9 @@
           });
           $('#datadog_counter').click(function () {
               $.get('/datadog/counter');
+          });
+          $('#datadog_shutdown_canary').click(function () {
+              $.get('/datadog/shutdown_canary');
           });
           $('#increase_diskspace').click(function () {
               $.get('/increase_disk');

@@ -1,9 +1,19 @@
-from flask import Flask, render_template, jsonify
-import json
-from armory.hellodeploy import kv_parser
-import datadog
+# -*- Python -*_
+
+# pylint: disable=invalid-name
+
+# System modules
+import os
 from subprocess import call
 import time
+
+# 3rd party modules
+import datadog
+from flask import Flask, render_template, jsonify
+
+# Our stuff
+from armory.hellodeploy import kv_parser
+
 
 server = Flask(__name__, static_url_path='/static')
 
@@ -36,6 +46,12 @@ def datadog_counter():
     datadog.dogstatsd.statsd.increment("hellodeploy.buttons.datadog.warning")
 
     return jsonify({"sent": "counter increment"})
+
+
+@server.route("/datadog/shutdown_canary")
+def datadog_shutdown_canary():
+    os.system("inject_canary_errors.py --force &")
+    return jsonify({"sent": "ok"})
 
 
 @server.route("/increase_disk")
