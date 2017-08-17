@@ -65,7 +65,7 @@ def datadog_testrequest():
     env_kv = kv_parser.parse(kv_text)
     payload = ""
     if ("CLOUD_DETAIL" in env_kv and "fail-canary" in env_kv["CLOUD_DETAIL"]):
-        payload = "x" * 1000
+        payload = "x" * 100000
     return jsonify({"payload": payload})
 
 @server.route("/increase_disk")
