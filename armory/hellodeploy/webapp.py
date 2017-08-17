@@ -64,7 +64,7 @@ def datadog_testrequest():
     kv_text = open('/etc/default/server-env').read()
     env_kv = kv_parser.parse(kv_text)
     payload = ""
-    if ("CLOUD_DETAIL" in env_kv and env_kv["CLOUD_DETAIL"] == "fail"):
+    if ("CLOUD_DETAIL" in env_kv and env_kv["CLOUD_DETAIL"] == "fail-canary"):
         payload = "x" * 1000
     return jsonify({"payload": payload})
 
