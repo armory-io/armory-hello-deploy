@@ -9,11 +9,13 @@ node {
         sh("arm unit")
     }
 
-    stage("Push Image & Deb Package") {
-        sh '''
-          . /mnt/secrets/bintray/bintray
-          arm push
-        '''
+    if (env.BRANCH_NAME == "master") {
+        stage("Push Image & Deb Package") {
+            sh '''
+              . /mnt/secrets/bintray/bintray
+              arm push
+            '''
+        }
     }
 
     stage("Archive Artifacts") {
