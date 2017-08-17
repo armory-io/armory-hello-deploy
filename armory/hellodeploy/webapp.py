@@ -53,6 +53,20 @@ def datadog_shutdown_canary():
     os.system("inject_canary_errors.py --force &")
     return jsonify({"sent": "ok"})
 
+@server.route("/datadog/testrequest")
+def datadog_testrequest():
+    """ This is used to drive a metrics test using the automated canary
+    analysis function in Barometer. Depending on the "Detail" field set in the
+    Spinnaker cluster used to deploy this server, this endpoint will either
+    return a very small or a much larger payload. We then use the network
+    bytes out for the machine as a metric to drive the canary evaluation.
+    """
+    kv_text = open('/etc/default/server-env').read()
+    env_kv = kv_parser.parse(kv_text)
+    payload = ""
+    if ("CLOUD_DETAIL" in env_kv and env_kv["CLOUD_DETAIL"] == "fail"):
+        payload = "x" * 1000
+    return jsonify({"payload": payload})
 
 @server.route("/increase_disk")
 def add_disk():
