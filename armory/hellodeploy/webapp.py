@@ -9,7 +9,7 @@ import time
 
 # 3rd party modules
 import datadog
-from flask import Flask, render_template, jsonify
+from flask import Flask, render_template, jsonify, request
 
 # Our stuff
 from armory.hellodeploy import kv_parser
@@ -43,9 +43,22 @@ def datadog_warn():
 
 @server.route("/datadog/counter")
 def datadog_counter():
-    datadog.dogstatsd.statsd.increment("hellodeploy.buttons.datadog.warning")
 
-    return jsonify({"sent": "counter increment"})
+    tags = ["#"+tag for tag in request.args.getlist("tag")]
+
+    repeat_factor = 1
+    try:
+        kv_text = open('/etc/default/server-env').read()
+        env_kv = kv_parser.parse(kv_text)
+        if "CLOUD_DETAIL" in env_kv and "fail-canary" in env_kv["CLOUD_DETAIL"]:
+            repeat_factor = 1000
+    except FileNotFoundError:
+        pass
+
+    for _ in range(repeat_factor):
+        datadog.dogstatsd.statsd.increment("hellodeploy.buttons.datadog.warning", tags=tags)
+
+    return jsonify({"sent": "counter increment", "repeat": repeat_factor, "tags": tags})
 
 
 @server.route("/datadog/shutdown_canary")
