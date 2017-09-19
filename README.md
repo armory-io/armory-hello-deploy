@@ -27,7 +27,7 @@ image gets booted up, it'll start.
 ### Tips
 - Inspect files included into a deb
 ```bash
-brew intall dpkg
+brew install dpkg
 dpkg -c build/distributions/*.deb
 ```
 
