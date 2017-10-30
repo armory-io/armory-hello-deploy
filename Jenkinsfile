@@ -9,6 +9,10 @@ node {
         sh("arm unit")
     }
 
+    stage("Publish Pipelines") {
+        sh("arm pipelines \$(pwd)/pipelines")
+    }
+
     if (env.BRANCH_NAME == "master") {
         stage("Push Image & Deb Package") {
             sh '''

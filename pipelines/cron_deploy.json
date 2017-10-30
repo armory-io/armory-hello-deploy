@@ -1,0 +1,145 @@
+{
+    "application": "{{APP_NAME}}",
+    "keepWaitingPipelines": false,
+    "limitConcurrent": true,
+    "name": "{{BRANCH_INFO}}Cron Deploy",
+    "index": 1,
+    "parallel": true,
+    "stages": [
+        {
+            "baseLabel": "release",
+            "baseOs": "trusty",
+            "cloudProviderType": "aws",
+            "extendedAttributes": {},
+            "name": "Bake",
+            "package": "armory-hello-deploy",
+            "refId": "1",
+            "regions": [
+                "us-west-2"
+            ],
+            "requisiteStageRefIds": [],
+            "storeType": "ebs",
+            "templateFileName": "aws-ebs-armory.json",
+            "type": "bake",
+            "user": "kevinawoo",
+            "vmType": "hvm"
+        },
+        {
+            "clusters": [
+                {
+                    "account": "aws-staging",
+                    "application": "armoryhellodeploy",
+                    "availabilityZones": {
+                        "us-west-2": [
+                            "us-west-2a",
+                            "us-west-2b",
+                            "us-west-2c"
+                        ]
+                    },
+                    "capacity": {
+                        "desired": 1,
+                        "max": 1,
+                        "min": 1
+                    },
+                    "cloudProvider": "aws",
+                    "cooldown": 10,
+                    "copySourceCustomBlockDeviceMappings": true,
+                    "ebsOptimized": false,
+                    "enabledMetrics": [],
+                    "healthCheckGracePeriod": 600,
+                    "healthCheckType": "ELB",
+                    "iamRole": "BaseIAMRole",
+                    "instanceMonitoring": false,
+                    "instanceType": "t2.small",
+                    "interestingHealthProviderNames": [
+                        "Amazon"
+                    ],
+                    "keyPair": "armory-spinnaker-keypair",
+                    "loadBalancers": [
+                        "armoryhellodeploy-cron"
+                    ],
+                    "maxRemainingAsgs": 2,
+                    "provider": "aws",
+                    "scaleDown": true,
+                    "securityGroups": [
+                        "sg-ed025695"
+                    ],
+                    "stack": "cron",
+                    "strategy": "redblack",
+                    "subnetType": "external (spinnaker)",
+                    "suspendedProcesses": [],
+                    "tags": {},
+                    "targetGroups": [],
+                    "targetHealthyDeployPercentage": 100,
+                    "terminationPolicies": [
+                        "Default"
+                    ],
+                    "useAmiBlockDeviceMappings": false
+                }
+            ],
+            "name": "Deploy",
+            "refId": "2",
+            "requisiteStageRefIds": [
+                "1"
+            ],
+            "restrictExecutionDuringTimeWindow": true,
+            "restrictedExecutionWindow": {
+                "days": [
+                    2,
+                    3,
+                    4,
+                    5,
+                    6
+                ],
+                "whitelist": [
+                    {
+                        "endHour": 22,
+                        "endMin": 0,
+                        "startHour": 7,
+                        "startMin": 0
+                    }
+                ]
+            },
+            "type": "deploy"
+        },
+        {
+            "action": "scale_exact",
+            "allowScaleDownActive": false,
+            "capacity": {
+                "desired": 0,
+                "max": 0,
+                "min": 0
+            },
+            "cloudProvider": "aws",
+            "cloudProviderType": "aws",
+            "cluster": "armoryhellodeploy-cron",
+            "credentials": "aws-staging",
+            "interestingHealthProviderNames": [
+                "Amazon"
+            ],
+            "name": "Resize Server Group",
+            "preferLargerOverNewer": "false",
+            "processes": [],
+            "refId": "3",
+            "regions": [
+                "us-west-2"
+            ],
+            "remainingFullSizeServerGroups": 1,
+            "requisiteStageRefIds": [
+                "2"
+            ],
+            "resizeType": "exact",
+            "target": "current_asg_dynamic",
+            "targetHealthyDeployPercentage": 100,
+            "type": "resizeServerGroup"
+        }
+    ],
+    "triggers": [
+        {
+            "enabled": {{TRIGGER_ENABLED}},
+            "job": "Spinnaker_HelloDeploy_Cron",
+            "master": "Armory Jenkins",
+            "type": "jenkins"
+        }
+    ]
+}
