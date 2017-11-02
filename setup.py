@@ -11,7 +11,8 @@ setup(name='hello-deploy',
     author_email='isaac@armory.io',
     install_requires=[
         'Flask==0.12',
-        'apscheduler'
+        'apscheduler',
+        'newrelic'
     ],
     packages= find_packages(),
     scripts=['armory/scripts/hello_deploy_start.py',
