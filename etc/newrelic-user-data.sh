@@ -9,5 +9,5 @@ service newrelic-infra restart
 # service newrelic-sysmond restart
 
 newrelic-admin generate-config 001107cdaf3230d77288b1d1634cfe9dd669802c /etc/newrelic.ini
-sed -i 's/Python Application/Armory Hello Deploy/' /etc/newrelic.ini
+sed -i 's/Python Application/armoryhellodeploy/' /etc/newrelic.ini
 service armory-hello-deploy restart
