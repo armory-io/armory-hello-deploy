@@ -36,5 +36,4 @@ dpkg -c build/distributions/*.deb
 dpkg -f build/distributions/*.deb
 ```
 
-This is a test.  Delete me later.
 
